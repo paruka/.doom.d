@@ -175,7 +175,78 @@
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
 
+;; * UI
+(setq browse-url-browser-function 'xwidget-webkit-browse-url
+      display-line-numbers-type nil
+      ;;doom-big-font (font-spec :family "SF Mono" :size 18)
+      ;;doom-font (font-spec :family "Menlo" :size 14)
+      doom-theme 'doom-nord
+      ;;doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 14)
+      ;;doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 13)
+      frame-alpha-lower-limit 0
+      frame-title-format
+      '("emacs%@"
+        (:eval (system-name)) ": "
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name)) "%b")))
+      indicate-buffer-boundaries nil
+      indicate-empty-lines nil
+      org-bullets-bullet-list '("◉")
+      pdf-view-use-unicode-ligther nil
+      which-key-idle-delay 0.3)
+
+
+(or standard-display-table
+    (setq standard-display-table (make-display-table)))
+(set-display-table-slot standard-display-table 0 ?\ )
+(setq-default fringe-indicator-alist
+              (delq (assq 'truncation fringe-indicator-alist)
+                    (delq (assq 'continuation fringe-indicator-alist)
+                          fringe-indicator-alist)))
+
+;; * Mac-specific
+(when IS-MAC
+  (setq insert-directory-program "gls")
+  (setq ns-use-thin-smoothing t)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+
+;; * Arch-specific
+(when IS-LINUX
+  (setq insert-directory-program "ls"
+        conda-anaconda-home "/opt/miniconda3"
+        +python-conda-home "/home/xfu/.conda"
+        +modeline-height 48
+        doom-big-font (font-spec :family "SF Mono" :size 24)
+        doom-font (font-spec :family "SF mono" :size 24)
+        doom-theme 'doom-nord
+        doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 24)
+
+        doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 26)))
+;; * Windows-specific
+(when IS-WINDOWS
+  (setq insert-directory-program "ls"))
+
+;; * Keys
+(setq
+ doom-localleader-key ","
+ +default-repeat-forward-key ";"
+ +default-repeat-backward-key "'"
+ evil-want-C-u-scroll t
+ evil-want-integration t
+ evil-shift-width 2
+ evil-snipe-override-evil-repeat-keys nil
+ evil-collection-company-use-tng nil
+ evil-respect-visual-line-mode t
+ +magit-hub-features t
+ +evil-collection-disabled-list '(elfeed notmuch kotlin-mode simple dired helm ivy anaconda-mode outline))
+
 ;; * Repo
 (setq package-archives '(("gnu" . "https://elpa.emacs-china.org/gnu/")
                          ("org" . "https://elpa.emacs-china.org/org/")
                          ("melpa" . "https://elpa.emacs-china.org/melpa/")))
+
+;; * Hacks
+(def-package-hook! ivy-rich
+  :pre-init nil
+  :pre-config nil)
