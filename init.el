@@ -193,7 +193,8 @@
       indicate-empty-lines nil
       org-bullets-bullet-list '("◉")
       pdf-view-use-unicode-ligther nil
-      which-key-idle-delay 0.3)
+      which-key-idle-delay 0.3
+      doom-leader-alt-key "C-;")
 
 
 (or standard-display-table
