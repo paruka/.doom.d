@@ -10,6 +10,10 @@
    :i "C-r" #'isearch-backward
    :i "C-d" #'delete-char)
 
-;; (map! :leader
-;;       (:prefix-map ("s" . "search")
-;;         :desc "swiper" "s" #'swiper))
+(map! :leader
+      (:prefix-map ("j" . "jump")
+        :desc "evil-avy-goto-char" "j" #'evil-avy-goto-char
+        :desc "evil-avy-goto-char2" "J" #'evil-avy-goto-char-2
+        :desc "evil-avy-goto-line" "l" #'evil-avy-goto-line
+        :desc "evil-avy-goto-word-0" "W" #'evil-avy-goto-word-0
+        :desc "evil-avy-goto-word-1" "w" #'evil-avy-goto-word-1))
