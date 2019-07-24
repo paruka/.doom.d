@@ -8,7 +8,11 @@
    :i "C-n" #'evil-next-line
    :i "C-b" #'backward-char
    :i "C-r" #'isearch-backward
-   :i "C-d" #'delete-char)
+   :i "C-d" #'delete-char
+   :nvim "C-e" #'end-of-line
+   :nvim "C-k" #'kill-line)
+   ;; :i "C-y" #'yank
+  ;; :i "M-" #'yank-pop)
 
 (map! :leader
       (:prefix-map ("j" . "jump")
