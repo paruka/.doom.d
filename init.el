@@ -115,7 +115,7 @@
        ;;ledger            ; an accounting system in Emacs
        lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
-       ;;nim               ; python + lisp at the speed of c
+       nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
@@ -226,7 +226,9 @@
         doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 26)))
 ;; * Windows-specific
 (when IS-WINDOWS
-  (setq insert-directory-program "ls"))
+  (setq insert-directory-program "ls")
+  (setq ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
+
 
 ;; * Keys
 (setq

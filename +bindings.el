@@ -10,8 +10,10 @@
    :i "C-r" #'isearch-backward
    :i "C-d" #'delete-char
    :nvim "C-e" #'end-of-line
-   :nvim "C-k" #'kill-line)
-   ;; :i "C-y" #'yank
+   :nvim "C-k" #'kill-line
+   :nvim "C-@" #'set-mark-command
+   :nvim "C-SPC" #'set-mark-command
+   :i "C-y" #'yank)
   ;; :i "M-" #'yank-pop)
 
 (map! :leader
