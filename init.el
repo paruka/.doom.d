@@ -194,8 +194,14 @@
       org-bullets-bullet-list '("◉")
       pdf-view-use-unicode-ligther nil
       which-key-idle-delay 0.3
+      display-line-numbers-type 'relative
+      user-full-name "Paruka"
+      user-mail-address "paruka.me@gmail.com"
+      epa-file-encrypt-to user-mail-address
       doom-leader-alt-key "C-;")
 
+;; **** Frames/Windows
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (or standard-display-table
     (setq standard-display-table (make-display-table)))

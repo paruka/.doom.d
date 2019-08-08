@@ -35,6 +35,15 @@
 (def-package! deadgrep
   :commands (deadgrep))
 
+;; **** magit
+(after! magit
+  (setq magit-blame--style
+      '(margin
+        (margin-format " %s%f" " %C %a" " %H")
+        (margin-width . 42)
+        (margin-face . magit-blame-margin)
+        (margin-body-face magit-blame-dimmed))))
+
 ;; **** tools
 (defun paruka/backward-kill-word-or-region (&optional arg)
   "Calls `kill-region' when a region is actived and
