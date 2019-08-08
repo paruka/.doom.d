@@ -4,17 +4,21 @@
    :i "C-f" #'forward-char
    :i "C-x s" #'save-buffer
    :nvim "C-x C-f" #'counsel-find-file
-   :i "C-p" #'evil-previous-line
-   :i "C-n" #'evil-next-line
+   :vi "C-p" #'previous-line
+   :vi "C-n" #'next-line
    :i "C-b" #'backward-char
    :i "C-r" #'isearch-backward
    :i "C-d" #'delete-char
-   :nvim "C-e" #'end-of-line
+   :nvim "C-e" #'mwim-end-of-line-or-code
+   :nvim "C-a" #'mwim-beginning-of-code-or-line
    :nvim "C-k" #'kill-line
    :nvim "C-@" #'set-mark-command
    :nvim "C-SPC" #'set-mark-command
-   :i "C-y" #'yank)
-  ;; :i "M-" #'yank-pop)
+   :i "C-y" #'yank
+   ;:i "M-y" #'yank-pop
+   :i "C-v" #'scroll-up-command
+   :i "M-v" #'scroll-down-command
+   :nvim "C-w" #'paruka/backward-kill-word-or-region)
 
 (map! :leader
       (:prefix-map ("j" . "jump")

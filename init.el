@@ -29,7 +29,7 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-       ;;pretty-code       ; replace bits of code with pretty symbols
+       pretty-code       ; replace bits of code with pretty symbols
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
@@ -64,8 +64,8 @@
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
-       ;;docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       docker
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
        flycheck          ; tasing you for every semicolon you forget
@@ -78,9 +78,9 @@
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;password-store    ; password manager for nerds
-       ;;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
@@ -179,7 +179,7 @@
 (setq browse-url-browser-function 'xwidget-webkit-browse-url
       display-line-numbers-type nil
       ;;doom-big-font (font-spec :family "SF Mono" :size 18)
-      ;;doom-font (font-spec :family "Menlo" :size 14)
+      ;;doom-font (font-spec :family "Source Code Pro" :size 16)
       doom-theme 'doom-nord
       ;;doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 14)
       ;;doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 13)
@@ -216,18 +216,19 @@
 (when IS-LINUX
   (setq insert-directory-program "ls"
         conda-anaconda-home "/opt/miniconda3"
-        +python-conda-home "/home/xfu/.conda"
+        +python-conda-home "/home/paruka/.conda"
         +modeline-height 48
         doom-big-font (font-spec :family "SF Mono" :size 24)
         doom-font (font-spec :family "SF mono" :size 24)
         doom-theme 'doom-nord
         doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 24)
-
         doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 26)))
+
 ;; * Windows-specific
 (when IS-WINDOWS
-  (setq insert-directory-program "ls")
-  (setq ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
+  (setq insert-directory-program "ls"
+        doom-font (font-spec :family "Source Code Pro" :size 16)
+        ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
 
 
 ;; * Keys

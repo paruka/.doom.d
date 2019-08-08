@@ -5,3 +5,7 @@
 ;; (package! some-package)
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
+
+(package! mwim)
+(package! sed-mode)
+(package! deadgrep)
