@@ -180,7 +180,7 @@
       display-line-numbers-type nil
       ;;doom-big-font (font-spec :family "SF Mono" :size 18)
       ;;doom-font (font-spec :family "Source Code Pro" :size 16)
-      doom-theme 'doom-nord
+      doom-theme 'doom-city-lights;;'doom-nord
       ;;doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 14)
       ;;doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 13)
       frame-alpha-lower-limit 0
@@ -226,13 +226,14 @@
         +modeline-height 48
         doom-big-font (font-spec :family "SF Mono" :size 24)
         doom-font (font-spec :family "SF mono" :size 24)
-        doom-theme 'doom-nord
+        doom-theme 'doom-city-lights;;'doom-nord
         doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 24)
         doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 26)))
 
 ;; * Windows-specific
 (when IS-WINDOWS
   (setq insert-directory-program "ls"
+        doom-big-font (font-spec :family "Source Code Pro" :size 24)
         doom-font (font-spec :family "Source Code Pro" :size 16)
         ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
 
