@@ -17,6 +17,10 @@
 (after! avy
   (setq avy-all-windows 'all-frames))
 
+;; **** evil
+(after! evil
+  (setq evil-escape-key-sequence "kj"))
+
 ;; **** ace-window
 (after! ace-window
   (setq aw-keys '(?f ?d ?s ?r ?e ?w)
