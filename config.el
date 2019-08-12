@@ -2,6 +2,14 @@
 
 ;; Place your private configuration here
 
+(setq request-storage-directory (concat doom-etc-dir "request/")
+      trash-directory "~/.Trash/"
+      delete-by-moving-to-trash t
+      enable-remote-dir-locals t
+      electric-pair-inhibit-predicate 'ignore
+      persp-interactive-init-frame-behaviour-override -1
+      org-directory "~/git/org")
+
 ;; **** ivy-config
 (after! ivy
   (setq ivy-use-selectable-prompt t
@@ -28,8 +36,21 @@
         aw-ignore-current t
         aw-background nil))
 
+;; **** flycheck
+(after! flycheck
+  (setq flycheck-checker-error-threshold 3000))
+
+;; **** lua
+(add-hook! lua-mode
+  (global-flycheck-mode -1))
+
 ;; **** mwim
 (def-package! mwim)
+
+;; **** evil-lion
+(def-package! evil-lion
+  :config
+  (evil-lion-mode))
 
 ;; **** sed
 (def-package! sed-mode

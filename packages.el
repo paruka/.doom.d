@@ -9,3 +9,4 @@
 (package! mwim)
 (package! sed-mode)
 (package! deadgrep)
+(package! evil-lion)

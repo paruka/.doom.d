@@ -32,7 +32,7 @@
        pretty-code       ; replace bits of code with pretty symbols
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
@@ -235,6 +235,8 @@
   (setq insert-directory-program "ls"
         doom-big-font (font-spec :family "Source Code Pro" :size 24)
         doom-font (font-spec :family "Source Code Pro" :size 16)
+        doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
+        doom-variable-pitch-font (font-spec :family "Source Code Pro")
         ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
 
 
