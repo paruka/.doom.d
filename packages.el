@@ -10,3 +10,4 @@
 (package! sed-mode)
 (package! deadgrep)
 (package! evil-lion)
+(package! anki-editor)

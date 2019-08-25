@@ -60,6 +60,9 @@
 (def-package! deadgrep
   :commands (deadgrep))
 
+;; **** anki-editor
+(def-package! anki-editor)
+
 ;; **** magit
 (after! magit
   (setq magit-blame--style
