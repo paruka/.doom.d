@@ -62,7 +62,11 @@
         ;; misc
         :n "U" #'dired-undo
         ;; subtree
-        ))
+        )
+   (:after org
+     :map org-mode-map
+     :localleader
+     "C" #'org-copy-subtree))
 
 (map! :leader
       (:prefix-map ("j" . "jump")
