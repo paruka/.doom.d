@@ -11,3 +11,5 @@
 (package! deadgrep)
 (package! evil-lion)
 (package! anki-editor)
+(package! dart-mode)
+(package! format-all)

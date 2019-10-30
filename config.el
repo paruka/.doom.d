@@ -63,6 +63,22 @@
 ;; **** anki-editor
 (def-package! anki-editor)
 
+;; **** dart-mode!
+(def-package! dart-mode
+  ;;:hook ((dart-mode-hook . lsp))
+  :config
+  (setq dart-format-on-save t)
+  (setq lsp-auto-guess-root t))
+
+(after! dart-mode
+  (add-hook 'dart-mode-hook #'lsp)
+  (add-hook 'dart-mode-hook #'format-all-mode)
+  (with-eval-after-load "projectile"
+    (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
+    (add-to-list 'projectile-project-root-files-bottom-up "BUILD")))
+
+(def-package! format-all)
+
 ;; **** magit
 (after! magit
   (setq magit-blame--style
