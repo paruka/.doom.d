@@ -45,26 +45,26 @@
   (global-flycheck-mode -1))
 
 ;; **** mwim
-(def-package! mwim)
+(use-package! mwim)
 
 ;; **** evil-lion
-(def-package! evil-lion
+(use-package! evil-lion
   :config
   (evil-lion-mode))
 
 ;; **** sed
-(def-package! sed-mode
+(use-package! sed-mode
   :commands (sed-mode))
 
 ;; **** deadgrep
-(def-package! deadgrep
+(use-package! deadgrep
   :commands (deadgrep))
 
 ;; **** anki-editor
-(def-package! anki-editor)
+(use-package! anki-editor)
 
 ;; **** dart-mode!
-(def-package! dart-mode
+(use-package! dart-mode
   ;;:hook ((dart-mode-hook . lsp))
   :config
   (setq dart-format-on-save t)
@@ -77,7 +77,18 @@
     (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
     (add-to-list 'projectile-project-root-files-bottom-up "BUILD")))
 
-(def-package! format-all)
+(after! org-mode
+  :config
+  ;; (add-to-list 'org-latex-packages-alist
+  ;;              '("" "tikz" t))
+  ;; (eval-after-load "preview"
+  ;; '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
+  (setq org-latex-create-formula-image-program 'imagemagick))
+
+(use-package! format-all)
+
+(after! cc-mode
+  (add-hook 'before-save-hook #'lsp-format-buffer))
 
 ;; **** magit
 (after! magit

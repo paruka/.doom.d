@@ -260,6 +260,6 @@
                          ("melpa" . "https://elpa.emacs-china.org/melpa/")))
 
 ;; * Hacks
-(def-package-hook! ivy-rich
+(use-package-hook! ivy-rich
   :pre-init nil
   :pre-config nil)
