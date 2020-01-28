@@ -103,7 +103,8 @@
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
-       ;;go                ; the hipster dialect
+       (go                ; the hipster dialect
+        +lsp)
        ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
@@ -215,6 +216,7 @@
 (when IS-MAC
   (setq insert-directory-program "gls")
   (setq ns-use-thin-smoothing t)
+  (setq exec-path (append '("~/go/bin" "~/Documents/develop/flutter/bin/") exec-path))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
