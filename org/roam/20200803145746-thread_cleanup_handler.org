@@ -1,0 +1,25 @@
+#+SETUPFILE: ./20200803145746-thread_cleanup_handler.org
+#+HUGO_SECTION: 
+#+TITLE: thread cleanup handler
+#+ROAM_TAGS: thread
+#+ROAM_ALIAS: "线程清理处理函数"
+
+* 描述 
+线程可以安排它退出时需要调用的函数。与进程的[[file:20200803150008-atexit.org][atexit]]函数类似。
+
+线程可以注册多个清理处理程序，他们以栈的新式存储，因此，执行顺序与注册顺序相反。
+* 声明
+#+BEGIN_SRC C
+#include <pthread.h>
+
+void pthread_cleanup_push(void *(rtn)(void *), void *arg);
+
+void pthread_cleanup_pop(int execute);
+#+END_SRC
+* 注意
+当线程执行以下动作时，调用线程清理函数：
+1. 调用[[file:20200803140155-pthread_exit.org][pthread_exit]]时。
+2. 相应取消请求时[[file:20200803143156-pthread_cancel.org][pthread_cancel]]。
+3. 用 **非0 ** 的参数 /execute/ 参数调用 **pthread_cleanup_pop** 时。
+   
+无论那种情况， **pthread_cleanup_pop** 都将删除上次 **pthread_cleanup_push** 调用建立的清理处理程序。

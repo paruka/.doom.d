@@ -1,0 +1,18 @@
+#+SETUPFILE: ./20200802171345-pthread_create.org
+#+HUGO_SECTION: 
+#+TITLE: pthread_create
+#+ROAM_TAGS: thread
+#+ROAM_ALIAS:
+
+* 描述
+
+
+* 声明
+#+BEGIN_SRC C
+#include <pthread.h>
+
+int pthread_create(pthread_t *tid, const pthread_attr_t *attr,
+                   void *(*start_rtn)(void), void *arg);
+#+END_SRC
+返回值：成功返回0，失败返回错误码
+* 注意

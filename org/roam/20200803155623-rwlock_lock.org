@@ -1,0 +1,22 @@
+#+SETUPFILE: ./20200803155623-rwlock_lock.org
+#+HUGO_SECTION: 
+#+TITLE: rwlock_lock
+#+ROAM_TAGS: thread thread-synchronization
+#+ROAM_ALIAS: "read lock rwlock" "write lock rwlock" "unlock rwlock"
+
+* 描述 
+
+
+* 声明
+#+BEGIN_SRC C
+#include <pthread.h>
+
+int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock);
+int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock);
+int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);
+
+#+END_SRC
+** 返回值：
+- 成功：0
+- 失败：错误码 
+* 注意

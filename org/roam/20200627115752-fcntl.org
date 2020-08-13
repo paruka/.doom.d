@@ -1,0 +1,62 @@
+#+TITLE: fcntl
+#+ROAM_TAGS: linux_io linux
+
+* 描述
+*fcntl* 函数可以改变已打开文件的性质。
+* 声明
+#+BEGIN_SRC C
+#include <fcntl.h>
+
+int fcntl(int fd, int cmd, ... /* int arg */);
+#+END_SRC
+返回值：失败返回-1，成功由 *cmd* 决定。
+* cmd 选项
+** F_GETFD
+返回对应 *fd* 的 *文件描述符标志* 。
+
+*当前只有一个文件描述符标志：* =FD_CLOEXEC= 。
+** F_DUPFD
+1. 复制一个现有的描述符。新文件描述符（ *new_fd* ）作为函数返回值。
+2. 返回值是 *尚未打开的各描述符* 中 =大于或等于= 第三个参数中的 *最小值* 。
+3. *new_fd* 与 *fd* 共享统一文件表项。
+4. *new_fd* 有自己的 *文件描述符标志* 。其中 *FD_CLOEXEC* 文件描述符标志被清除。
+
+也可使用[[file:20200627114756-the_dup_functions.org][the dup functions]]实现。
+** F_SETFD
+对 *fd* 设置文件描述符标志。
+** F_GETFL
+返回 *fd* 的文件状态标志。 *状态标志* 参考[[file:20200627171806-open.org][open]]函数。
+
+注意： 三个访问标志: *O_RDONLY* 、 *O_WRONLY* 、 *O_RDWR* 需使用屏蔽字 *O_ACCMODE* 获取。
+
+#+BEGIN_SRC C
+int mode = fcntl(fd, F_GETEL, 0);
+switch (mode & O_ACCMODE) {
+    case O_RDONLY:
+        break;
+    case O_WRONLY:
+        break
+    case O_RDWR:
+        break
+    default:
+        break;
+}
+if (val & O_APPEND) {
+    // append
+}
+#+END_SRC
+** F_SETFL
+将文件状态标志设置为第三个参数的值。可用修改以下标志： O_APPEND、O_NONBLOCK、O_SYNC、O_DSYNC、O_RSYNC、O_FSYNC、O_ASYNC。
+** F_GETOWN
+取当前接受 *SIGIO* 和 *SIGURG* 信号的进程ID或进程组ID。返回值含义如下：
+*** > 0
+指定接受的进程id。
+*** < 0
+*abs(ret)* 为指定接受的进程组id。
+** F_SETOWN
+设置接受 *SIGIO* 和 *SIGURG* 信号的进程ID或进程组ID。参数含义如下：
+*** arg > 0
+指定一个进程id。
+*** arg < 0
+指定 *abs(arg)* 的进程组id。
+

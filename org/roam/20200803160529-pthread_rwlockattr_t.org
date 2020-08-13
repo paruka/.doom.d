@@ -1,0 +1,7 @@
+#+SETUPFILE: ./20200803160529-pthread_rwlockattr_t.org
+#+HUGO_SECTION: 
+#+TITLE: pthread_rwlockattr_t
+#+ROAM_TAGS: thread thread-synchronization
+#+ROAM_ALIAS:
+
+

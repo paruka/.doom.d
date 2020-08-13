@@ -1,0 +1,20 @@
+#+TITLE: iphdr
+#+ROAM_TAGS: tcp/ip
+* 包头定义
+#+BEGIN_SRC C
+struct iphdr {
+    unsigned char version : 4;
+    unsigned char hdrlen  : 4; //首部长度
+    unsigned char tos;
+    unsigned short length;
+    unsigned short id;
+    unsigned char flag : 3;
+    unsigned short offset : 13;
+    unsigned char ttl;
+    unsigned char proto;
+    unsigned short checksum;
+    unsigned int sip;
+    unsigned int dip;
+};
+#+END_SRC
+[[https://image-hosting-paruka.oss-cn-shenzhen.aliyuncs.com/img/20200708170204.png][IP header]]

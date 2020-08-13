@@ -1,0 +1,16 @@
+#+SETUPFILE: ./20200803142448-exit.org
+#+HUGO_SECTION: 
+#+TITLE: exit
+#+ROAM_TAGS: linux linux-process
+#+ROAM_ALIAS:
+
+* 描述 
+
+
+* 声明
+#+BEGIN_SRC C
+#include <stdlib.h>
+void exit(int status);
+void _Exit(int status);
+#+END_SRC
+* 注意

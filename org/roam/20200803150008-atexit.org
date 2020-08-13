@@ -1,0 +1,12 @@
+#+SETUPFILE: ./20200803150008-atexit.org
+#+HUGO_SECTION: 
+#+TITLE: atexit
+#+ROAM_TAGS: linux process
+#+ROAM_ALIAS:
+
+* 描述 
+
+
+* 声明
+
+* 注意

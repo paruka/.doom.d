@@ -1,0 +1,11 @@
+* Inbox
+** [ ] vfork测试
+1. 父进程打开文件，使用带缓冲的api写入内容。
+2. vfork子进程，子进程调用exit。
+3. 查看缓冲区内容是否写入文件。
+   
+** [ ] HTTP连接中的Connection: close是由哪端产生的？
+** [ ] 另以进程中，打开fd
+** TODO 以'+'模式打开文件的限制 :READ:
+** TODO APUE chapter 5 :READ:
+DEADLINE: <2020-06-27 Sat>

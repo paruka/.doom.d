@@ -1,0 +1,26 @@
+#+SETUPFILE: ./20200803140000-pthread_join.org
+#+HUGO_SECTION: 
+#+TITLE: pthread_join
+#+ROAM_TAGS: thread
+#+ROAM_ALIAS:
+
+* 描述 
+进程中的其它线程通过调用此函数，获取指定线程的返回值。
+调用此函数的线程将会一直堵塞，直到指定线程：
+1. 调用[[file:20200803140155-pthread_exit.org][pthread_exit]]返回或
+2. 从例程中返回或
+3. 被取消。
+* 声明
+#+BEGIN_SRC C
+#inlcude <pthread.h>
+int pthread_join(pthread_t thread, void **rval_ptr);
+#+END_SRC
+** rval_ptr
+- 如果线程只是从它的启动例程返回， **rval_ptr** 将包含其返回码。
+- 如果线程被取消， **rval_ptr** 指定的内存单元就置为 **PTHREAD_CANCELED** 。
+- 如果调用对线程的返回值不感兴趣，可将 **rval_ptr** 置为 **NULL** 。
+** 返回值
+- 0: 成功    
+- 错误码：失败
+* 注意
+可通过调用 **pthread_join** 自动把线程置于[[file:20200803144537-pthread_detach.org][分离状态]]，这样资源就可以恢复。如果线程已经处于分离状态， **pthread_join** 会调用失败，返回 **EINVAL** 。

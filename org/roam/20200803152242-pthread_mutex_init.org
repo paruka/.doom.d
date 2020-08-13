@@ -1,0 +1,24 @@
+#+SETUPFILE: ./20200803152242-pthread_mutex_init.org
+#+HUGO_SECTION: 
+#+TITLE: 互斥量的创建与销毁
+#+ROAM_TAGS: thread thread-synchronization
+#+ROAM_ALIAS: "pthread_mutex_destory" "pthread_mutex_init"
+
+* 描述
+对互斥量进行创建与小虎。
+
+对于静态属性的互斥量，可以通过将其赋值为 **PTHREAD_MUTEX_INITIALIZER** 进行初始化。
+* 声明
+#+BEGIN_SRC C
+#include <pthread.h>
+
+int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
+
+int pthread_mutex_destroy(pthread_mutex_t *mutex);
+#+END_SRC
+** attr
+[[file:20200803153126-pthread_mutexattr_t.org][pthread_mutexattr_t]]表示互斥量的属性，可通过将 **attr** 置为 **NULL** 来创建默认属性的互斥量。
+** 返回值
+- 成功：0
+- 失败: 错误码
+* 注意

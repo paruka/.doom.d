@@ -1,0 +1,11 @@
+#+TITLE: linux memory management
+#+ROAM_TAGS: linux_memory linux
+* UMA与NUMA
+[[file:20200801223442-uma.org][UMA]]
+
+[[file:20200802104542-numa.org][NUMA]]
+
+[[file:20200802110508-diff_uma_numa.org][UMA和NUMA的区别]]
+
+[[file:20200802154249-linux_memory_model.org][linux memory model]]
+

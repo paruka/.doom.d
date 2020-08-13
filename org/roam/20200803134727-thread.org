@@ -1,0 +1,17 @@
+#+SETUPFILE: ./20200803134727-thread.org
+#+HUGO_SECTION: 
+#+TITLE: thread
+#+ROAM_TAGS: thread
+#+ROAM_ALIAS:
+
+* pthread apis
+[[file:20200802171345-pthread_create.org][pthread_create]]
+
+[[file:20200803140000-pthread_join.org][pthread_join]]
+
+[[file:20200803140155-pthread_exit.org][pthread_exit]]
+
+* 线程同步
+[[file:20200802164414-read_write_lock.org][读写锁]]
+
+[[file:20200803151340-mutex.org][mutex]]

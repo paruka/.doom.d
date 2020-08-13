@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# group: file templates
+# contributor: paruka
+# --
+
+cmake_minimum_required(VERSION 3.17.0)
+project(${1:main} LANGUAGES CXX)
+set(CMAKE_EXPORT_COMPILE_COMMANDS YES)
+add_executable($\{CMAKE_PROJECT_NAME\} $1.cc)
+target_compile_features($\{CMAKE_PROJECT_NAME\} PRIVATE cxx_std_${2:20})
+set(CMAKE_CXX_FLAGS_DEBUG
+    "$\{CMAKE_CXX_FLAGS_DEBUG\} -fno-omit-frame-pointer -fsanitize=address")
+set(CMAKE_LINKER_FLAGS_DEBUG
+    "$\{CMAKE_LINKER_FLAGS_DEBUG\} -fno-omit-frame-pointer -fsanitize=address")

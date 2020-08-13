@@ -1,0 +1,32 @@
+#+TITLE: the dup functions
+#+ROAM_TAGS: linux_io linux
+
+* 函数声明：
+#+BEGIN_SRC C
+#include <unistd.h>
+
+int dup(int fd);
+
+int dup2(int fd, int fd2);
+#+END_SRC
+返回值：
+|------+----------------|
+| 成功 | 新的文件描述符 |
+| 失败 |             -1 |
+|------+----------------|
+* 注意
+1. *dup* 返回的新文件描述符一定是当前可用的最小文件描述符。
+2. 此函数返回的新文件描述符 *与参数fd共享同一文件表项* 。
+3. *dup2* 返回 *fd2* 的描述符。
+4. 若 *fd2* 已经打开， *dup2* 函数会先将其关闭。
+5. 若 *fd == fd2* ， *dup2* 不会关闭 *fd* 。
+* 相关函数
+也可用[[file:20200627115752-fcntl.org][fcntl]]函数实现类似效果：
+#+BEGIN_SRC C
+fcntl(fd, F_DUPFD, 0);
+
+close(fd3);
+fcntl(fd, F_DUPFD, fd2)
+#+END_SRC
+但 *dup2* 是一个院子操作，且两者的某些 *errno* 并不相同。
+

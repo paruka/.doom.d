@@ -1,0 +1,17 @@
+#+SETUPFILE: ./20200803140155-pthread_exit.org
+#+HUGO_SECTION: 
+#+TITLE: pthread_exit
+#+ROAM_TAGS: thread
+#+ROAM_ALIAS:
+
+* 描述
+线程可以通过调用此函数，在不终止整个进程的情况下，停止它的控制流。
+* 声明
+#+BEGIN_SRC C
+#include <pthread.h>
+
+void pthread_exit(void *rval_ptr);
+#+END_SRC
+**rval_ptr** 是个无类型指针。进程中的其它线程可以通过调用[[file:20200803140000-pthread_join.org][pthread_join]]函数访问到这个指针。
+* 注意
+调用此函数，会触发[[file:20200803145746-thread_cleanup_handler.org][thread cleanup handler]]的调用。

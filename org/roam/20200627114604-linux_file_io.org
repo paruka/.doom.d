@@ -1,0 +1,15 @@
+#+TITLE: linux file io
+#+ROAM_TAGS: linux_io linux
+* 文件IO函数
+[[file:20200626151709-linux_read.org][Linux read function]]
+
+[[file:./20200627114756-the_dup_functions.org][the dup functions]]
+
+[[file:20200627115752-fcntl.org][fcntl]]
+
+[[file:20200627174046-ioctl.org][ioctl]]
+
+[[file:20200627232120-fwide.org][fwide]]
+
+* /dev/fd
+较新的系统都提供了[[file:20200627175429-dev_fd.org][/dev/fd目录]]，此目录列出了所有打开的文件具柄。 
