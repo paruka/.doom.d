@@ -51,7 +51,7 @@
         ;; :n "W" #'browse-url-of-dired-file
         :n "x" #'dired-do-flagged-delete
         :n "y" #'dired-copy-filename-as-kill
-        :n "Y" (lambda! (dired-copy-filename-as-kill 0))
+        :n "Y" (cmd! (dired-copy-filename-as-kill 0))
         :n "+" #'dired-create-directory
         :n "O" #'dired-open-mac
         :n "o" #'dired-preview-mac
@@ -66,7 +66,8 @@
    (:after org
      :map org-mode-map
      :localleader
-     "C" #'org-copy-subtree))
+     "C" #'org-copy-subtree
+     :desc "jump to the previous position" "gm" #'org-mark-ring-goto))
 
 (map! :leader
       (:prefix-map ("j" . "jump")

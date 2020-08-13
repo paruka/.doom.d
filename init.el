@@ -89,7 +89,7 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       assembly          ; assembly for fun or debugging
+       ;;assembly          ; assembly for fun or debugging
        (cc                 ; C/C++/Obj-C madness
         +lsp)
        ;;clojure           ; java with a lisp
@@ -126,7 +126,15 @@
         +export          ; Exporting org to whatever you want
         +habit           ; Keep track of your habits
         +present         ; Emacs for presentations
-        +protocol)       ; Support for org-protocol:// links
+        +protocol        ; Support for org-protocol:// links
+        +roam            ; org roam
+        +noter
+        +pomodoro
+        ;;+pdf
+        +dragndrop
+        +gnuplot
+        +present
+        +hugo)
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -144,7 +152,10 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        web               ; the tubes
        ;;vala              ; GObjective-C
-
+       (dart
+        +lsp
+        +flutter)
+       paruka-org
        :email
        ;;(mu4e +gmail)       ; WIP
        ;;notmuch             ; WIP
@@ -173,6 +184,9 @@
        ;; For literate config users. This will tangle+compile a config.org
        ;; literate config in your `doom-private-dir' whenever it changes.
        ;;literate
+       ;;:private
+       ;;paruka-org
+       ;;paruka-cc
 
        ;; The default module sets reasonable defaults for Emacs. It also
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
@@ -217,9 +231,20 @@
 
 ;; * Mac-specific
 (when IS-MAC
-  (setq insert-directory-program "gls")
-  (setq ns-use-thin-smoothing t)
-  (setq exec-path (append '("~/go/bin" "~/Documents/develop/flutter/bin/") exec-path))
+  (setq insert-directory-program "gls"
+        ns-use-thin-smoothing t
+        exec-path (append '("/usr/local/bin" "~/go/bin" "~/Documents/develop/flutter/bin/" "~/.cargo/bin") exec-path)
+        doom-font (font-spec :family "Menlo" :size 16)
+        ;;counsel-rg-base-command "rg -M 120 --pcre2 --with-filename --no-heading --line-number --color never %s --path-separator \\\\ \."
+        ;;ccls-executable (concat doom-private-dir "bin/ccls.osx")
+        lsp-prefer-flymake nil
+        flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (setq ccls-initialization-options
+        `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
+                                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+                                    "-isystem/usr/local/include"]
+                        :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
+        
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 

@@ -7,8 +7,7 @@
       delete-by-moving-to-trash t
       enable-remote-dir-locals t
       electric-pair-inhibit-predicate 'ignore
-      persp-interactive-init-frame-behaviour-override -1
-      org-directory "~/git/org")
+      persp-interactive-init-frame-behaviour-override -1)
 
 ;; **** ivy-config
 (after! ivy
@@ -63,37 +62,6 @@
 ;; **** anki-editor
 (use-package! anki-editor)
 
-;; **** dart-mode!
-(use-package! dart-mode
-  ;;:hook ((dart-mode-hook . lsp))
-  :config
-  (setq dart-format-on-save t)
-  (setq lsp-auto-guess-root t))
-
-(after! dart-mode
-  (add-hook 'dart-mode-hook #'lsp)
-  (add-hook 'dart-mode-hook #'format-all-mode)
-  (with-eval-after-load "projectile"
-    (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
-    (add-to-list 'projectile-project-root-files-bottom-up "BUILD")))
-
-(after! org
-  :config
-  ;; (add-to-list 'org-latex-packages-alist
-  ;;              '("" "tikz" t))
-  ;; (eval-after-load "preview"
-  ;; '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
-  ;;(setq org-latex-create-formula-image-program 'imagemagick)
-  (setq org-preview-latex-default-process 'imagemagick)
-  (setq org-latex-packages-alist
-          '(("" "newpxtext,newpxmath" t)
-            ("" "tikz" t)
-            ("" "tikz-cd" t)
-            ("" "eulervm" t)))
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
-  (with-eval-after-load "preview"
-      (add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t)))
-
 (use-package! format-all)
 
 (after! cc-mode
@@ -106,7 +74,21 @@
         (margin-format " %s%f" " %C %a" " %H")
         (margin-width . 42)
         (margin-face . magit-blame-margin)
-        (margin-body-face magit-blame-dimmed))))
+       (margin-body-face magit-blame-dimmed))))
+
+;; private file templates
+(defvar private-file-templates-dir
+   (expand-file-name "templates/" (file-name-directory load-file-name))
+   "The path to a directory of yasnippet folders to use for file templates.")
+
+(after! yasnippet
+  (add-to-list 'yas-snippet-dirs 'private-file-templates-dir 'append #'eq)
+  (set-file-template! "/main\\.c\\(?:c\\|pp\\)$" :trigger "__paruka_main.cpp" :mode 'c++-mode)
+  (set-file-template! "\\.h\\(?:h\\|pp\\|xx\\)$" :trigger "__paruka_hpp" :mode 'c++-mode)
+  (set-file-template! "/CMakeLists.txt$" :trigger "__paruka_cmake.txt" :mode 'cmake-mode)
+  (set-file-template! "/.clang_format$" :trigger "__paruka_clang_format" :mode 'Fundamental-mode)
+  (set-file-template! "\\.org$" :trigger "__paruka_org.org" :mode 'org-mode)
+  (yas-reload-all))
 
 ;; **** tools
 (defun paruka/backward-kill-word-or-region (&optional arg)
@@ -118,12 +100,5 @@
       ;; call interactively so kill-region handles rectangular selection correctly
       (call-interactively #'kill-region)
     (backward-kill-word arg)))
-
-(use-package! org-noter
-  :commands (org-noter)
-  :config
-  (after! pdf-tools
-    (setq pdf-annot-activate-handler-functions #'org-noter-jump-to-note))
-  (setq org-noter-notes-mode-map (make-sparse-keymap)))
 
 (load! "+bindings")

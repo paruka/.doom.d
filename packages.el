@@ -11,6 +11,5 @@
 (package! deadgrep)
 (package! evil-lion)
 (package! anki-editor)
-(package! dart-mode)
 (package! format-all)
-(package! org-noter)
+(package! org-roam-server)
