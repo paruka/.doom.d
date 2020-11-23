@@ -1,6 +1,6 @@
 .DS_Store
 .idea
 *.log
-tmp/
-org/
+/tmp
+/org
 
