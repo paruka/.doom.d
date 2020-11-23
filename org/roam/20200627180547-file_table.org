@@ -1,4 +1,0 @@
-#+TITLE: 文件表项
-#+ROAM_TAGS: linux_io linux
-
-

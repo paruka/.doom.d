@@ -1,6 +1,0 @@
-#+TITLE: NUMA
-#+ROAM_TAGS: linux_memory linux
-* NUMA计算机
-- 非一致内存访问，non-uniform memory access
-- 总是多处理器计算机。系统的各个CPU都有本地内存，可支持特别快速的访问。
-- 各个处理器之间通过总线连接起来，以支持对其他CPU的本地内存的访问，当然比访问本地内存慢些。

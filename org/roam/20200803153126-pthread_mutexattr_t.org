@@ -1,7 +1,0 @@
-#+SETUPFILE: ./20200803153126-pthread_mutexattr_t.org
-#+HUGO_SECTION: 
-#+TITLE: pthread_mutexattr_t
-#+ROAM_TAGS: thread thread-synchronization
-#+ROAM_ALIAS:
-
-

@@ -1,6 +1,0 @@
-#+TITLE: UMA
-#+ROAM_TAGS: linux_memory linux
-* UMA计算机
-- 一致内存访问，uniform memory access
-- 将可用内存以连续方式组织起来（可能有小的缺口）。
-- SMP系统中的每个处理器访问各个内存区都是同样快。

@@ -1,5 +1,0 @@
-#+TITLE: UMA和NUMA的区别
-#+ROAM_TAGS: linux_memory linux
-* 两者差别
-[[https://image-hosting-paruka.oss-cn-shenzhen.aliyuncs.com/img/20200801223039.png]]
-两种类型的计算机也可能混合使用，其中使用不连续的内存。
