@@ -64,6 +64,8 @@
 
 (use-package! format-all)
 
+(use-package! protobuf-mode)
+
 (after! cc-mode
   (add-hook 'before-save-hook #'lsp-format-buffer))
 

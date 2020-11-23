@@ -130,16 +130,18 @@
         +roam            ; org roam
         +noter
         +pomodoro
-        ;;+pdf
+        +pdf
         +dragndrop
         +gnuplot
         +present
         +hugo)
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
-       ;;plantuml          ; diagrams for confusing people more
+       plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python             ; beautiful is better than ugly
+        +lsp
+        +pyright)       
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSL;s
        ;;rest              ; Emacs as a REST client
@@ -150,7 +152,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
+       web                 ; the tubes
        ;;vala              ; GObjective-C
        (dart
         +lsp

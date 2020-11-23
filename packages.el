@@ -13,3 +13,4 @@
 (package! anki-editor)
 (package! format-all)
 (package! org-roam-server)
+(package! protobuf-mode)

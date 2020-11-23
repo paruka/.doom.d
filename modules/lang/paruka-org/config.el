@@ -34,7 +34,12 @@
             ("" "eulervm" t)))
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
   (with-eval-after-load "preview"
-      (add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t)))
+    (add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
+  (setq org-file-apps
+        (append '(
+                  ("\\.png\\'" . default)
+                  ("\\.pdf\\'" . default)
+                  ) org-file-apps )))
 
 ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
 (with-eval-after-load 'org-capture
