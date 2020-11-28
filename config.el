@@ -12,13 +12,33 @@
 ;; **** ivy-config
 (after! ivy
   (setq ivy-use-selectable-prompt t
-        ivy-auto-select-single-candidate t
-        ivy-rich-parse-remote-buffer nil
-        +ivy-buffer-icons nil
-        ivy-use-virtual-buffers nil
-        ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-cd-selected
-        ivy-height 20
-        ivy-rich-switch-buffer-name-max-length 50))
+    ivy-auto-select-single-candidate t
+    ivy-rich-parse-remote-buffer nil
+    +ivy-buffer-icons nil
+    ivy-use-virtual-buffers nil
+    ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-cd-selected
+    ivy-height 20
+    ivy-rich-switch-buffer-name-max-length 50)
+  (when IS-WINDOWS
+    (setq counsel-rg-base-command `("rg" "-M" "1024" "--pcre2" "-H" "-n" "--color" "never" "--no-heading"
+                                     "-S" "--hidden" "-L" "-P" "%s" ".")
+      counsel-async-command-delay 0.2)))
+
+     ;; (setq counsel-rg-base-command `("rg" "-M" "240" "--pcre2" "--with-filename" "--no-heading" "-S" "--line-number" "--color" "never" 
+     ;;                    "-L" "-P" "%s"  "-H" "-n" "--path-separator" "//" ".")
+     ;; counsel-async-command-delay 0.2)))
+     
+    ;;(setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s --path-separator // ."
+     ;; ivy-dynamic-exhibit-delay-ms 100
+     ;;counsel-async-command-delay 0.5
+    ;; )))
+
+;; **** projectile
+(after! projectile
+  (when (and IS-WINDOWS (executable-find doom-projectile-fd-binary))
+    (setq projectile-generic-command
+          (format "%s . -0 -H -E .git --color=never --type file --type symlink --follow  --path-separator=//"
+                  doom-projectile-fd-binary))))
 
 ;; **** avy
 (after! avy

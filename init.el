@@ -115,7 +115,7 @@
        latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
        (lua +moonscript)   ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       (markdown +grip)    ; writing docs for people to ignore
        nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -265,11 +265,25 @@
 ;; * Windows-specific
 (when IS-WINDOWS
   (setq insert-directory-program "ls"
-        doom-big-font (font-spec :family "Source Code Pro" :size 24)
-        doom-font (font-spec :family "Source Code Pro" :size 16)
-        doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
-        doom-variable-pitch-font (font-spec :family "Source Code Pro")
-        ccls-executable "C:\\dev_tools\\msys64\\mingw64\\bin\\ccls.exe"))
+    doom-big-font (font-spec :family "Source Code Pro" :size 24)
+    doom-font (font-spec :family "Source Code Pro" :size 16)
+    doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
+    doom-variable-pitch-font (font-spec :family "Source Code Pro")
+    exec-path (append '("C:/home/Softwares/msys64/mingw64/bin"
+                         "C:/home/Softwares/msys64/msys64/usr/local/bin"
+                         "C:/home/Softwares/msys64/usr/bin"
+                         "D:/Softwares/nodejs"
+                         "C:/Users/yangjianjia/AppData/Roaming/npm") exec-path)
+    ccls-executable "C:/home/Softwares/ccls/Release/ccls.exe")
+  (setq ccls-initialization-options
+    `(:clang ,(list :extraArgs ["-i/mingw64/include/c++/10.2.0"
+                                 "-i/mingw64/include"
+                                 "-i/usr/include"]
+                :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
+  (setq-default c-basic-offset 4)
+  (setq-default tab-width 4)
+  (define-coding-system-alias 'UTF-8 'utf-8)
+  (define-coding-system-alias 'utf8 'utf-8))
 
 
 ;; * Keys
