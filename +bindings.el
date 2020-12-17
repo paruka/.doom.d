@@ -67,7 +67,12 @@
      :map org-mode-map
      :localleader
      "C" #'org-copy-subtree
-     :desc "jump to the previous position" "gm" #'org-mark-ring-goto))
+     :desc "jump to the previous position" "gm" #'org-mark-ring-goto)
+  (:after ccls
+    :map (c-mode-map c++-mode-map)
+    (:after lsp-ui-peek
+      (:localleader
+        :desc "References (lsp ui)" "R" #'lsp-ui-peek-find-references))))
 
 (map! :leader
       (:prefix-map ("j" . "jump")

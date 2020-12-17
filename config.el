@@ -81,10 +81,12 @@
 
 ;; **** anki-editor
 (use-package! anki-editor)
-
+;; **** format-all
 (use-package! format-all)
-
+;; **** protobuf-mode
 (use-package! protobuf-mode)
+;; **** interleave
+(use-package! interleave)
 
 (after! cc-mode
   (add-hook 'before-save-hook #'lsp-format-buffer))

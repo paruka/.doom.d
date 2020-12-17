@@ -42,6 +42,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
+       format
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
@@ -140,8 +141,9 @@
        plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python             ; beautiful is better than ugly
-        +lsp
-        +pyright)       
+         +lsp
+         +pyright
+         +cpython)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSL;s
        ;;rest              ; Emacs as a REST client
