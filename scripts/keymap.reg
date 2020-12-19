@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+"Scancode Map"=hex:00,00,00,00,00,00,00,00,03,00,00,00,1d,00,3a,00,3a,00,1d,e0,00,00,00,00
+ 
+# 使用方法:更改拓展名为.reg   删除注释 双击运行
+# 1d,00,3a,00 表示将Caps键替换为Left Ctl，
+# 3a,00,1d,e0表示将RightCtrl替换为Caps
