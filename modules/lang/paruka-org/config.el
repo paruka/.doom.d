@@ -107,4 +107,9 @@ See `org-capture-templates' for more information."
          ""
          :file-name "${slug}"
          :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n"
-         :unnarrowed t)))
+          :unnarrowed t)))
+
+;; valign
+(use-package! valign
+  :init
+  (add-hook! 'org-mode-hook #'valign-mode))

@@ -294,9 +294,12 @@
 ;; * Windows-specific
 (when IS-WINDOWS
   (setq insert-directory-program "ls"
-    doom-big-font (font-spec :family "JetBrains Mono" :size 24)
-    doom-font (font-spec :family "JetBrains Mono" :size 16)
-    doom-unicode-font (font-spec :family "JetBrains Mono" :size 16)
+    ;; doom-big-font (font-spec :family "JetBrains Mono" :size 24)
+    ;; doom-font (font-spec :family "JetBrains Mono" :size 16)
+    ;; doom-unicode-font (font-spec :family "JetBrains Mono" :size 16)
+    doom-big-font (font-spec :family "Mononoki Nerd Font" :size 24)
+    doom-font (font-spec :family "Mononoki Nerd Font" :size 16)
+    doom-unicode-font (font-spec :family "Mononoki Nerd Font" :size 16)
     ;; doom-big-font (font-spec :family "Source Code Pro" :size 24)
     ;; doom-font (font-spec :family "Source Code Pro" :size 16)
     ;; doom-unicode-font (font-spec :family "Source Han Sans" :size 16)

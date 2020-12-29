@@ -12,6 +12,5 @@
 (package! evil-lion)
 (package! anki-editor)
 (package! format-all)
-(package! org-roam-server)
 (package! protobuf-mode)
 (package! interleave)
