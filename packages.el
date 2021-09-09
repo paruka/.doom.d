@@ -14,3 +14,4 @@
 (package! format-all)
 (package! protobuf-mode)
 (package! interleave)
+(package! rime)

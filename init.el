@@ -9,7 +9,7 @@
 ;; found in modules/README.org.
 
 (doom! :input
-       chinese
+       ;;chinese
        ;;japanese
        ;;layout          ; auie,ctsrnm is the superior home row
 
@@ -18,6 +18,7 @@
        ;;helm            ; the *other* search engine for love and life
        ;;ido             ; the other *other* search engine...
        ivy               ; a search engine for love and life
+       vertico           ; the search engine of the future
 
        :ui
        deft              ; notational velocity for Emacs
@@ -96,7 +97,8 @@
          +dictionary
          +docsets)         ; ...or in Dash docsets locally
        lsp
-       magit               ; a git porcelain for Emacs
+       (magit
+        +forge)               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf                 ; pdf enhancements
@@ -160,7 +162,7 @@
         +habit             ; Keep track of your habits
         +present           ; Emacs for presentations
         +protocol          ; Support for org-protocol:// links
-        +roam              ; org roam
+        +roam2              ; org roam
         +noter
         +pomodoro
         +pdf
@@ -172,9 +174,10 @@
        plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python             ; beautiful is better than ugly
-         +lsp
-         +pyright
-         +cpython)
+        +lsp
+        ;;+conda
+        ;;+pyright
+        +cpython)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -224,123 +227,7 @@
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
 
-;; * UI
-(setq browse-url-browser-function 'xwidget-webkit-browse-url
-      display-line-numbers-type nil
-      ;;doom-big-font (font-spec :family "SF Mono" :size 18)
-      ;;doom-font (font-spec :family "Source Code Pro" :size 16)
-      doom-theme 'doom-city-lights;;'doom-nord
-      ;;doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 14)
-      ;;doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 13)
-      frame-alpha-lower-limit 0
-      frame-title-format
-      '("emacs%@"
-        (:eval (system-name)) ": "
-        (:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name)) "%b")))
-      indicate-buffer-boundaries nil
-      indicate-empty-lines nil
-      org-bullets-bullet-list '("◉")
-      pdf-view-use-unicode-ligther nil
-      which-key-idle-delay 0.3
-      display-line-numbers-type 'relative
-      user-full-name "Paruka"
-      user-mail-address "paruka.me@gmail.com"
-      epa-file-encrypt-to user-mail-address
-      doom-leader-alt-key "C-;")
-
-;; **** Frames/Windows
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(or standard-display-table
-    (setq standard-display-table (make-display-table)))
-(set-display-table-slot standard-display-table 0 ?\ )
-(setq-default fringe-indicator-alist
-              (delq (assq 'truncation fringe-indicator-alist)
-                    (delq (assq 'continuation fringe-indicator-alist)
-                          fringe-indicator-alist)))
-
-;; * Mac-specific
-(when IS-MAC
-  (setq insert-directory-program "gls"
-        ns-use-thin-smoothing t
-        exec-path (append '("/usr/local/bin" "~/go/bin" "~/Documents/develop/flutter/bin/" "~/.cargo/bin") exec-path)
-        doom-font (font-spec :family "Menlo" :size 16)
-        ;;counsel-rg-base-command "rg -M 120 --pcre2 --with-filename --no-heading --line-number --color never %s --path-separator \\\\ \."
-        ;;ccls-executable (concat doom-private-dir "bin/ccls.osx")
-        lsp-prefer-flymake nil
-        flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  (setq ccls-initialization-options
-        `(:clang ,(list :extraArgs ["-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1"
-                                    "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-                                    "-isystem/usr/local/include"]
-                        :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
-        
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
-
-;; * Arch-specific
-(when IS-LINUX
-  (setq insert-directory-program "ls"
-        conda-anaconda-home "/opt/miniconda3"
-        +python-conda-home "/home/paruka/.conda"
-        +modeline-height 48
-        doom-big-font (font-spec :family "SF Mono" :size 24)
-        doom-font (font-spec :family "SF mono" :size 24)
-        doom-theme 'doom-city-lights;;'doom-nord
-        doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 24)
-        doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 26)))
-
-;; * Windows-specific
-(when IS-WINDOWS
-  (setq insert-directory-program "ls"
-    ;; doom-big-font (font-spec :family "JetBrains Mono" :size 24)
-    ;; doom-font (font-spec :family "JetBrains Mono" :size 16)
-    ;; doom-unicode-font (font-spec :family "JetBrains Mono" :size 16)
-    doom-big-font (font-spec :family "Mononoki Nerd Font" :size 24)
-    doom-font (font-spec :family "Mononoki Nerd Font" :size 16)
-    doom-unicode-font (font-spec :family "Mononoki Nerd Font" :size 16)
-    ;; doom-big-font (font-spec :family "Source Code Pro" :size 24)
-    ;; doom-font (font-spec :family "Source Code Pro" :size 16)
-    ;; doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
-    doom-variable-pitch-font (font-spec :family "Source Code Pro")
-    exec-path (append '("C:/home/Softwares/msys64/mingw64/bin"
-                         "C:/home/Softwares/msys64/msys64/usr/local/bin"
-                         "C:/home/Softwares/msys64/usr/bin"
-                         "D:/Softwares/nodejs"
-                         "C:/Users/yangjianjia/AppData/Roaming/npm") exec-path)
-    ccls-executable "C:/home/Softwares/ccls/Release/ccls.exe")
-  (setq ccls-initialization-options
-    `(:clang ,(list :extraArgs ["-i/mingw64/include/c++/10.2.0"
-                                 "-i/mingw64/include"
-                                 "-i/usr/include"]
-                :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
-  (setq-default c-basic-offset 4)
-  (setq-default tab-width 4)
-  (define-coding-system-alias 'UTF-8 'utf-8)
-  (define-coding-system-alias 'utf8 'utf-8))
-
-
-;; * Keys
-(setq
- doom-localleader-key ","
- +default-repeat-forward-key ";"
- +default-repeat-backward-key "'"
- evil-want-C-u-scroll t
- evil-want-integration t
- evil-shift-width 2
- evil-snipe-override-evil-repeat-keys nil
- evil-collection-company-use-tng nil
- evil-respect-visual-line-mode t
- +magit-hub-features t
- +evil-collection-disabled-list '(elfeed notmuch kotlin-mode simple dired helm ivy anaconda-mode outline))
-
 ;; * Repo
 (setq package-archives '(("gnu" . "https://elpa.emacs-china.org/gnu/")
                          ("org" . "https://elpa.emacs-china.org/org/")
                          ("melpa" . "https://elpa.emacs-china.org/melpa/")))
-
-;; * Hacks
-(use-package-hook! ivy-rich
-  :pre-init nil
-  :pre-config nil)

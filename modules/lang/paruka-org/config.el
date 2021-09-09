@@ -67,47 +67,49 @@ See `org-capture-templates' for more information."
                  (file+olp ,(concat paruka/hugo-org-dir "all-posts.org") "Blog Ideas")
                  (function org-hugo-new-subtree-post-capture-template))))
 
-(use-package org-roam-server
-  :ensure t
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8080
-        org-roam-server-export-inline-images t
-        org-roam-server-authenticate nil
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
+;; (use-package org-roam-server
+;;   :ensure t
+;;   :config)
+  ;; (setq org-roam-server-host "127.0.0.1"
+  ;;       org-roam-server-port 8080
+  ;;       org-roam-server-export-inline-images t
+  ;;       org-roam-server-authenticate nil
+  ;;       org-roam-server-network-poll t
+  ;;       org-roam-server-network-arrows nil
+  ;;       org-roam-server-network-label-truncate t
+  ;;       org-roam-server-network-label-truncate-length 60
+  ;;       org-roam-server-network-label-wrap-length 20))
 
 (setq org-roam-capture-templates
       '(
-        ("d" "default" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_TAGS: \n#+ROAM_ALIAS:\n\n")
-        ("a" "api" plain (function org-roam-capture--get-point)
-         "* 描述 \n\n%?\n* 声明\n\n* 注意\n"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_TAGS: \n#+ROAM_ALIAS:\n\n"
+        ("d" "default" plain "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+filetags: \n#+ROAM_ALIAS:\n\n")
+         :unnarrowed t)
+        ("a" "api" plain "* 描述 \n\n%?\n* 声明\n\n* 注意\n"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+filetags: \n#+ROAM_ALIAS:\n\n")
+         :unnarrowed t)
+        ("u" "api" plain "%?"
+         :if-new (file+head "ue4/%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+filetags: ue4\n#+ROAM_ALIAS:\n\n")
          :unnarrowed t)
         ("g" "group")
-        ("ga" "Group A" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_TAGS: \n#+ROAM_ALIAS:\n\n")
-        ("gb" "Group B" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_TAGS: \n#+ROAM_ALIAS:\n\n")))
+        ("ga" "Group A" entry "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+filetags: \n#+ROAM_ALIAS:\n\n")
+         :unnarrowed t)
+        ("gb" "Group B" entry "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+filetags: \n#+ROAM_ALIAS:\n\n")
+         :unnarrowed t)))
 
 ;; @see https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (setq org-roam-capture-ref-templates
-      '(("r" "ref" plain (function org-roam-capture--get-point)
-         ""
-         :file-name "${slug}"
-         :head "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n"
-          :unnarrowed t)))
+      '(("r" "ref" entry "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+SETUPFILE: ./%<%Y%m%d%H%M%S>-${slug}.org\n#+HUGO_SECTION: \n#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n")
+         :unnarrowed t)))
 
 ;; valign
 (use-package! valign
