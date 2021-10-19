@@ -17,7 +17,7 @@
        company           ; the ultimate code completion backend
        ;;helm            ; the *other* search engine for love and life
        ;;ido             ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       ;;ivy               ; a search engine for love and life
        vertico           ; the search engine of the future
 
        :ui
@@ -85,8 +85,8 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       ansible
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        editorconfig        ; let someone else argue about tabs vs spaces
@@ -108,6 +108,7 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        upload              ; map local to remote projects via ssh/ftp
+       paruka-leetcode
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
