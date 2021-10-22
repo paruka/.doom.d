@@ -109,6 +109,7 @@
        ;;tmux              ; an API for interacting with tmux
        upload              ; map local to remote projects via ssh/ftp
        paruka-leetcode
+;;       paruka-webkit
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -187,12 +188,14 @@
        (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       sh                  ; she sells (ba|z|fi)sh shells on the C xor
+       (sh                 ; she sells (ba|z|fi)sh shells on the C xor
+        +lsp
+        +fish)
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web                 ; the tubes
+       (web +lsp)                 ; the tubes
        yaml                ; JSON, but readable
 
        paruka-org
