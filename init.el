@@ -110,6 +110,7 @@
        upload              ; map local to remote projects via ssh/ftp
        paruka-leetcode
 ;;       paruka-webkit
+       paruka-eaf
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
