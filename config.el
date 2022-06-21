@@ -12,26 +12,26 @@
 ;; **** ivy-config
 (after! ivy
   (setq ivy-use-selectable-prompt t
-    ivy-auto-select-single-candidate t
-    ivy-rich-parse-remote-buffer nil
-    +ivy-buffer-icons nil
-    ivy-use-virtual-buffers nil
-    ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-cd-selected
-    ivy-height 20
-    ivy-rich-switch-buffer-name-max-length 50)
+        ivy-auto-select-single-candidate t
+        ivy-rich-parse-remote-buffer nil
+        +ivy-buffer-icons nil
+        ivy-use-virtual-buffers nil
+        ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-cd-selected
+        ivy-height 20
+        ivy-rich-switch-buffer-name-max-length 50)
   (when IS-WINDOWS
     (setq counsel-rg-base-command `("rg" "-M" "1024" "--pcre2" "-H" "-n" "--color" "never" "--no-heading"
-                                     "-S" "--hidden" "-L" "-P" "%s" ".")
-      counsel-async-command-delay 0.2)))
+                                    "-S" "--hidden" "-L" "-P" "%s" ".")
+          counsel-async-command-delay 0.2)))
 
-     ;; (setq counsel-rg-base-command `("rg" "-M" "240" "--pcre2" "--with-filename" "--no-heading" "-S" "--line-number" "--color" "never" 
-     ;;                    "-L" "-P" "%s"  "-H" "-n" "--path-separator" "//" ".")
-     ;; counsel-async-command-delay 0.2)))
-     
-    ;;(setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s --path-separator // ."
-     ;; ivy-dynamic-exhibit-delay-ms 100
-     ;;counsel-async-command-delay 0.5
-    ;; )))
+;; (setq counsel-rg-base-command `("rg" "-M" "240" "--pcre2" "--with-filename" "--no-heading" "-S" "--line-number" "--color" "never"
+;;                    "-L" "-P" "%s"  "-H" "-n" "--path-separator" "//" ".")
+;; counsel-async-command-delay 0.2)))
+
+;;(setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never %s --path-separator // ."
+;; ivy-dynamic-exhibit-delay-ms 100
+;;counsel-async-command-delay 0.5
+;; )))
 
 ;; **** projectile
 (after! projectile
@@ -110,16 +110,16 @@
 ;; **** magit
 (after! magit
   (setq magit-blame--style
-      '(margin
-        (margin-format " %s%f" " %C %a" " %H")
-        (margin-width . 42)
-        (margin-face . magit-blame-margin)
-       (margin-body-face magit-blame-dimmed))))
+        '(margin
+          (margin-format " %s%f" " %C %a" " %H")
+          (margin-width . 42)
+          (margin-face . magit-blame-margin)
+          (margin-body-face magit-blame-dimmed))))
 
 ;; private file templates
 (defvar private-file-templates-dir
-   (expand-file-name "templates/" (file-name-directory load-file-name))
-   "The path to a directory of yasnippet folders to use for file templates.")
+  (expand-file-name "templates/" (file-name-directory load-file-name))
+  "The path to a directory of yasnippet folders to use for file templates.")
 
 (after! (vterm evil-collection)
   (add-hook!
@@ -137,9 +137,9 @@
   (yas-reload-all))
 
 (add-hook 'python-mode-local-vars-hook
-  (lambda ()
-    (when (flycheck-may-enable-checker 'python-pylint)
-      (flycheck-select-checker 'python-pylint))))
+          (lambda ()
+            (when (flycheck-may-enable-checker 'python-pylint)
+              (flycheck-select-checker 'python-pylint))))
 
 (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
@@ -157,8 +157,8 @@
 (defun org-export-docx ()
   (interactive)
   (let ((docx-file (concat (file-name-sans-extension (buffer-name)) ".docx"))
-         (template-file "~/.doom.d/org/docs/templates/template_me.docx")
-         (docx-dir "~/.doom.d/org/docs/"))
+        (template-file "~/.doom.d/org/docs/templates/template_me.docx")
+        (docx-dir "~/.doom.d/org/docs/"))
     (shell-command (format "pandoc %s -o %s%s --reference-doc=%s" (buffer-file-name) docx-dir docx-file template-file))
     (message "Convert finish: %s" docx-file)))
 
@@ -213,7 +213,7 @@
                                     "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
                                     "-isystem/usr/local/include"]
                         :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
-        
+
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
@@ -237,27 +237,27 @@
 ;; * Windows-specific
 (when IS-WINDOWS
   (setq insert-directory-program "ls"
-    ;; doom-big-font (font-spec :family "JetBrains Mono" :size 24)
-    ;; doom-font (font-spec :family "JetBrains Mono" :size 16)
-    ;; doom-unicode-font (font-spec :family "JetBrains Mono" :size 16)
-    doom-big-font (font-spec :family "Mononoki Nerd Font" :size 24)
-    doom-font (font-spec :family "Mononoki Nerd Font" :size 16)
-    doom-unicode-font (font-spec :family "Mononoki Nerd Font" :size 16)
-    ;; doom-big-font (font-spec :family "Source Code Pro" :size 24)
-    ;; doom-font (font-spec :family "Source Code Pro" :size 16)
-    ;; doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
-    doom-variable-pitch-font (font-spec :family "Source Code Pro")
-    exec-path (append '("C:/home/Softwares/msys64/mingw64/bin"
-                         "C:/home/Softwares/msys64/msys64/usr/local/bin"
-                         "C:/home/Softwares/msys64/usr/bin"
-                         "D:/Softwares/nodejs"
-                         "C:/Users/yangjianjia/AppData/Roaming/npm") exec-path)
-    ccls-executable "C:/home/Softwares/ccls/Release/ccls.exe")
+        ;; doom-big-font (font-spec :family "JetBrains Mono" :size 24)
+        ;; doom-font (font-spec :family "JetBrains Mono" :size 16)
+        ;; doom-unicode-font (font-spec :family "JetBrains Mono" :size 16)
+        doom-big-font (font-spec :family "Mononoki Nerd Font" :size 24)
+        doom-font (font-spec :family "Mononoki Nerd Font" :size 16)
+        doom-unicode-font (font-spec :family "Mononoki Nerd Font" :size 16)
+        ;; doom-big-font (font-spec :family "Source Code Pro" :size 24)
+        ;; doom-font (font-spec :family "Source Code Pro" :size 16)
+        ;; doom-unicode-font (font-spec :family "Source Han Sans" :size 16)
+        doom-variable-pitch-font (font-spec :family "Source Code Pro")
+        exec-path (append '("C:/home/Softwares/msys64/mingw64/bin"
+                            "C:/home/Softwares/msys64/msys64/usr/local/bin"
+                            "C:/home/Softwares/msys64/usr/bin"
+                            "D:/Softwares/nodejs"
+                            "C:/Users/yangjianjia/AppData/Roaming/npm") exec-path)
+        ccls-executable "C:/home/Softwares/ccls/Release/ccls.exe")
   (setq ccls-initialization-options
-    `(:clang ,(list :extraArgs ["-i/mingw64/include/c++/10.2.0"
-                                 "-i/mingw64/include"
-                                 "-i/usr/include"]
-                :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
+        `(:clang ,(list :extraArgs ["-i/mingw64/include/c++/10.2.0"
+                                    "-i/mingw64/include"
+                                    "-i/usr/include"]
+                        :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
   (setq-default c-basic-offset 4)
   (setq-default tab-width 4)
   (define-coding-system-alias 'UTF-8 'utf-8)
@@ -281,5 +281,100 @@
 (use-package-hook! ivy-rich
   :pre-init nil
   :pre-config nil)
+
+(use-package! keycast
+  :commands keycast-mode
+  :config
+  (define-minor-mode keycast-mode
+    "Show current command and its key binding in the mode line."
+    :global t
+    (if keycast-mode
+        (progn
+          (add-hook 'pre-command-hook 'keycast--update t)
+          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
+      (remove-hook 'pre-command-hook 'keycast--update)
+      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
+  (custom-set-faces!
+    '(keycast-command :inherit doom-modeline-debug
+                      :height 0.9)
+    '(keycast-key :inherit custom-modified
+                  :height 1.1
+                  :weight bold)))
+
+(use-package! gif-screencast
+  :commands gif-screencast-mode
+  :config
+  (map! :map gif-screencast-mode-map
+        :g "<f8>" #'gif-screencast-toggle-pause
+        :g "<f9>" #'gif-screencast-stop)
+  (setq gif-screencast-program "maim"
+        gif-screencast-args `("--quality" "3" "-i" ,(string-trim-right
+                                                     (shell-command-to-string
+                                                      "xdotool getactivewindow")))
+        gif-screencast-optimize-args '("--batch" "--optimize=3" "--usecolormap=/tmp/doom-color-theme"))
+  (defun gif-screencast-write-colormap ()
+    (f-write-text
+     (replace-regexp-in-string
+      "\n+" "\n"
+      (mapconcat (lambda (c) (if (listp (cdr c))
+                                 (cadr c))) doom-themes--colors "\n"))
+     'utf-8
+     "/tmp/doom-color-theme" ))
+  (gif-screencast-write-colormap)
+  (add-hook 'doom-load-theme-hook #'gif-screencast-write-colormap))
+
+;; writeroom-mode
+(setq +zen-text-scale 0.8)
+(defvar +zen-serif-p t
+  "Whether to use a serifed font with `mixed-pitch-mode'.")
+(defvar +zen-org-starhide t
+  "The value `org-modern-hide-stars' is set to.")
+
+(after! writeroom-mode
+  (defvar-local +zen--original-org-indent-mode-p nil)
+  (defvar-local +zen--original-mixed-pitch-mode-p nil)
+  (defun +zen-enable-mixed-pitch-mode-h ()
+    "Enable `mixed-pitch-mode' when in `+zen-mixed-pitch-modes'."
+    (when (apply #'derived-mode-p +zen-mixed-pitch-modes)
+      (if writeroom-mode
+          (progn
+            (setq +zen--original-mixed-pitch-mode-p mixed-pitch-mode)
+            (funcall (if +zen-serif-p #'mixed-pitch-serif-mode #'mixed-pitch-mode) 1))
+        (funcall #'mixed-pitch-mode (if +zen--original-mixed-pitch-mode-p 1 -1)))))
+  (defun +zen-prose-org-h ()
+    "Reformat the current Org buffer appearance for prose."
+    (when (eq major-mode 'org-mode)
+      (setq display-line-numbers nil
+            visual-fill-column-width 60
+            org-adapt-indentation nil)
+      (when (featurep 'org-modern)
+        (setq-local org-modern-star '("🙘" "🙙" "🙚" "🙛")
+                    ;; org-modern-star '("🙐" "🙑" "🙒" "🙓" "🙔" "🙕" "🙖" "🙗")
+                    org-modern-hide-stars +zen-org-starhide)
+        (org-modern-mode -1)
+        (org-modern-mode 1))
+      (setq
+       +zen--original-org-indent-mode-p org-indent-mode)
+      (org-indent-mode -1)))
+  (defun +zen-nonprose-org-h ()
+    "Reverse the effect of `+zen-prose-org'."
+    (when (eq major-mode 'org-mode)
+      (when (bound-and-true-p org-modern-mode)
+        (org-modern-mode -1)
+        (org-modern-mode 1))
+      (when +zen--original-org-indent-mode-p (org-indent-mode 1))))
+  (pushnew! writeroom--local-variables
+            'display-line-numbers
+            'visual-fill-column-width
+            'org-adapt-indentation
+            'org-modern-mode
+            'org-modern-star
+            'org-modern-hide-stars)
+  (add-hook 'writeroom-mode-enable-hook #'+zen-prose-org-h)
+  (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
+
+(use-package! lsp-bridge)
+(yas-global-mode 1)
+(global-lsp-bridge-mode)
 
 (load! "+bindings")

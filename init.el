@@ -14,11 +14,15 @@
        ;;layout          ; auie,ctsrnm is the superior home row
 
        :completion
-       company           ; the ultimate code completion backend
+       ;;(company
+       ;; +childframe)           ; the ultimate code completion backend
        ;;helm            ; the *other* search engine for love and life
        ;;ido             ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-       vertico           ; the search engine of the future
+       (vertico
+        +orderless
+        +icons)           ; the search engine of the future
+       (corfu + orderless)
 
        :ui
        deft              ; notational velocity for Emacs
@@ -30,7 +34,8 @@
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        ;;hydra
        ;;indent-guides   ; highlighted indent columns
-       ;;ligatures       ; ligatures and symbols to make your code pretty again
+       ;;(ligatures
+       ;; +extra)       ; ligatures and symbols to make your code pretty again
        ;;minimap         ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
@@ -44,9 +49,10 @@
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+       (window-select
+        +numbers)     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       ;;zen             ; distraction-free coding or writing
+       zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -69,7 +75,8 @@
          +icons          ; colorful icons for dired-mode
        )
        electric          ; smarter, keyword-based electric-indent
-       ;;ibuffer         ; interactive buffer management
+       (ibuffer
+        +icon)         ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -81,8 +88,8 @@
 
        :checkers
        syntax
-       ;;spell             ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       (:if (executable-find "aspell") spell)         ; tasing you for misspelling mispelling
+       grammar           ; tasing grammar mistake every you make
 
        :tools
        ansible
@@ -101,7 +108,7 @@
         +forge)               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       pdf                 ; pdf enhancements
+       ;;pdf                 ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb                 ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
@@ -177,7 +184,7 @@
        plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python             ; beautiful is better than ugly
-        +lsp
+        +lsp-pyright
         ;;+conda
         ;;+pyright
         +cpython)

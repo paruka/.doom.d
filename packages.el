@@ -15,3 +15,12 @@
 (package! protobuf-mode)
 (package! interleave)
 (package! rime)
+(package! keycast)
+(package! gif-screencast)
+;;(package! company :disable t)
+;(package! corfu)
+
+(package! lsp-bridge :recipe
+  (:host github
+   :repo "manateelazycat/lsp-bridge"
+   :files ("*.el" "acm" "core" "langserver" "*.py")))
