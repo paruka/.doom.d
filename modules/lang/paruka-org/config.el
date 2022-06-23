@@ -1,8 +1,8 @@
 ;;; lang/paruka-org/config.el -*- lexical-binding: t; -*-
 
 (defvar paruka/org-home-dir
-   (concat doom-private-dir "org/")
-   "The home path to a directory of org files.")
+  (concat doom-private-dir "org/")
+  "The home path to a directory of org files.")
 
 (defvar paruka/hugo-org-dir
   (concat paruka/org-home-dir "blog/")
@@ -13,6 +13,8 @@
   "The path to directory of org files")
 
 (setq org-directory paruka/org-agenda-dir)
+
+(setq org-agenda-files (list paruka/org-agenda-dir))
 
 (after! org-roam
   :config
@@ -28,10 +30,10 @@
   ;;(setq org-latex-create-formula-image-program 'imagemagick)
   (setq org-preview-latex-default-process 'imagemagick)
   (setq org-latex-packages-alist
-          '(("" "newpxtext,newpxmath" t)
-            ("" "tikz" t)
-            ("" "tikz-cd" t)
-            ("" "eulervm" t)))
+        '(("" "newpxtext,newpxmath" t)
+          ("" "tikz" t)
+          ("" "tikz-cd" t)
+          ("" "eulervm" t)))
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
   (with-eval-after-load "preview"
     (add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
@@ -70,15 +72,15 @@ See `org-capture-templates' for more information."
 ;; (use-package org-roam-server
 ;;   :ensure t
 ;;   :config)
-  ;; (setq org-roam-server-host "127.0.0.1"
-  ;;       org-roam-server-port 8080
-  ;;       org-roam-server-export-inline-images t
-  ;;       org-roam-server-authenticate nil
-  ;;       org-roam-server-network-poll t
-  ;;       org-roam-server-network-arrows nil
-  ;;       org-roam-server-network-label-truncate t
-  ;;       org-roam-server-network-label-truncate-length 60
-  ;;       org-roam-server-network-label-wrap-length 20))
+;; (setq org-roam-server-host "127.0.0.1"
+;;       org-roam-server-port 8080
+;;       org-roam-server-export-inline-images t
+;;       org-roam-server-authenticate nil
+;;       org-roam-server-network-poll t
+;;       org-roam-server-network-arrows nil
+;;       org-roam-server-network-label-truncate t
+;;       org-roam-server-network-label-truncate-length 60
+;;       org-roam-server-network-label-wrap-length 20))
 
 (setq org-roam-capture-templates
       '(

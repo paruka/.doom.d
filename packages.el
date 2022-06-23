@@ -18,7 +18,8 @@
 (package! keycast)
 (package! gif-screencast)
 ;;(package! company :disable t)
-;(package! corfu)
+
+(package! anaconda-mode :disable t)
 
 (package! lsp-bridge :recipe
   (:host github
