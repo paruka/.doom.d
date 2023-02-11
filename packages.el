@@ -25,3 +25,5 @@
   (:host github
    :repo "manateelazycat/lsp-bridge"
    :files ("*.el" "acm" "core" "langserver" "*.py")))
+
+(package! meson-mode)

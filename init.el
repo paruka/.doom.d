@@ -93,7 +93,7 @@
 
        :tools
        ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger +lsp)    ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        editorconfig        ; let someone else argue about tabs vs spaces
@@ -125,7 +125,9 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       cc                 ; C/C++/Obj-C madness
+       (cc
+        +lsp
+        +ccls)          ; C/C++/Obj-C madness
         ;;+lsp)
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -228,7 +230,7 @@
 
        :config
        ;; For literate config users. This will tangle+compile a config.org
-       ;; literate config in your `doom-private-dir' whenever it changes.
+       ;; literate config in your `doom-user-dir' whenever it changes.
        ;;literate
        ;;:private
        ;;paruka-org

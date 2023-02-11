@@ -1,7 +1,7 @@
 ;;; lang/paruka-org/config.el -*- lexical-binding: t; -*-
 
 (defvar paruka/org-home-dir
-  (concat doom-private-dir "org/")
+  (concat doom-user-dir "org/")
   "The home path to a directory of org files.")
 
 (defvar paruka/hugo-org-dir

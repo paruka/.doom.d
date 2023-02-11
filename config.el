@@ -138,8 +138,8 @@
 
 (add-hook 'python-mode-local-vars-hook
           (lambda ()
-            (when (flycheck-may-enable-checker 'python-pylint)
-              (flycheck-select-checker 'python-pylint))))
+            (when (flycheck-may-enable-checker 'python-pyright)
+              (flycheck-select-checker 'python-pyright))))
 
 (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
@@ -205,7 +205,7 @@
         exec-path (append '("/usr/local/bin" "~/go/bin" "~/Documents/develop/flutter/bin/" "~/.cargo/bin") exec-path)
         doom-font (font-spec :family "Menlo" :size 16)
         ;;counsel-rg-base-command "rg -M 120 --pcre2 --with-filename --no-heading --line-number --color never %s --path-separator \\\\ \."
-        ;;ccls-executable (concat doom-private-dir "bin/ccls.osx")
+        ;;ccls-executable (concat doom-user-dir "bin/ccls.osx")
         lsp-prefer-flymake nil
         flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (setq ccls-initialization-options
@@ -228,7 +228,9 @@
         doom-theme 'doom-city-lights ;;'doom-nord
         doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 16)
         doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 16)
-        exec-path (append '("/home/yangjianjia/anaconda3/bin" "/home/yangjianjia/.local/bin") exec-path))
+        exec-path (append '("/home/yangjianjia/anaconda3/bin" "/home/yangjianjia/.local/bin") exec-path)
+        ccls-initialization-options `(:clang ,(list :extraArgs ["-i/usr/include/c++/12.2.1" "-i/usr/include"]
+                                                    :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
   (setq-default c-basic-offset 4)
   (setq-default tab-width 4)
   (define-coding-system-alias 'UTF-8 'utf-8)
@@ -296,10 +298,10 @@
       (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
   (custom-set-faces!
     '(keycast-command :inherit doom-modeline-debug
-                      :height 0.9)
+      :height 0.9)
     '(keycast-key :inherit custom-modified
-                  :height 1.1
-                  :weight bold)))
+      :height 1.1
+      :weight bold)))
 
 (use-package! gif-screencast
   :commands gif-screencast-mode
@@ -374,7 +376,18 @@
   (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
 
 (use-package! lsp-bridge)
+(use-package! meson-mode
+  :init
+  (add-hook 'meson-mode-hook 'company-mode))
+
+(after! lsp-bridge
+  (setq lsp-bridge-c-lsp-server "ccls"))
+
 (yas-global-mode 1)
 (global-lsp-bridge-mode)
 
+(after! org
+  (setq org-agenda-files '("~/.doom.d/org/gtd/todo.org"
+                           "~/.doom.d/org/gtd/done.org"
+                           "~/.doom.d/org/gtd/notes.org")))
 (load! "+bindings")
