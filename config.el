@@ -56,12 +56,12 @@
         aw-background nil))
 
 ;; **** flycheck
-(after! flycheck
-  (setq flycheck-checker-error-threshold 3000))
+;; (after! flycheck
+;;   (setq flycheck-checker-error-threshold 3000))
 
 ;; **** lua
-(add-hook! lua-mode
-  (global-flycheck-mode -1))
+;; (add-hook! lua-mode
+;;   (global-flycheck-mode -1))
 
 ;; **** mwim
 (use-package! mwim)
@@ -104,8 +104,8 @@
 (setq default-input-method "rime"
       rime-show-candidate 'posframe)
 
-(after! cc-mode
-  (add-hook 'before-save-hook #'lsp-format-buffer))
+;;(after! cc-mode
+;;  (add-hook 'before-save-hook #'lsp-format-buffer))
 
 ;; **** magit
 (after! magit
@@ -136,10 +136,10 @@
   (set-file-template! "\\.org$" :trigger "__paruka_org.org" :mode 'org-mode)
   (yas-reload-all))
 
-(add-hook 'python-mode-local-vars-hook
-          (lambda ()
-            (when (flycheck-may-enable-checker 'python-pyright)
-              (flycheck-select-checker 'python-pyright))))
+;; (add-hook 'python-mode-local-vars-hook
+;;           (lambda ()
+;;             (when (flycheck-may-enable-checker 'python-pyright)
+;;               (flycheck-select-checker 'python-pyright))))
 
 (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
@@ -375,16 +375,20 @@
   (add-hook 'writeroom-mode-enable-hook #'+zen-prose-org-h)
   (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
 
-(use-package! lsp-bridge)
+;;(use-package! lsp-bridge)
+
 (use-package! meson-mode
   :init
   (add-hook 'meson-mode-hook 'company-mode))
 
-(after! lsp-bridge
-  (setq lsp-bridge-c-lsp-server "ccls"))
+;; (after! lsp-bridge
+;;   (setq lsp-bridge-c-lsp-server "ccls"))
 
 (yas-global-mode 1)
-(global-lsp-bridge-mode)
+;;(global-lsp-bridge-mode)
+
+(after! ccls
+  (ccls-use-default-rainbow-sem-highlight))
 
 (after! org
   (setq org-agenda-files '("~/.doom.d/org/gtd/todo.org"

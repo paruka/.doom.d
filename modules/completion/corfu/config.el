@@ -44,23 +44,24 @@
   (corfu-preselect-first nil)
   :hook
   (doom-first-buffer . global-corfu-mode)
-  :bind (:map corfu-map
-         ("SPC" . corfu-insert-separator)
-         ("TAB" . corfu-next)
-         ([tab] . corfu-next)
-         ("S-TAB" . corfu-previous)
-         ([backtab] . corfu-previous)))
+  ;; :bind (:map corfu-map
+  ;;        ("SPC" . corfu-insert-separator)
+  ;;        ("TAB" . corfu-next)
+  ;;        ([tab] . corfu-next)
+  ;;        ("S-TAB" . corfu-previous)
+  ;;        ([backtab] . corfu-previous))
+  )
 
-(use-package! corfu-doc
-  :hook
-  (corfu-mode . corfu-doc-mode)
-  :bind (:map corfu-map
-         ("M-n" . corfu-doc-scroll-down)
-         ("M-p" . corfu-doc-scroll-up)
-         ("M-d" . corfu-doc-toggle)))
+;; (use-package! corfu-doc
+;;   :hook
+;;   (corfu-mode . corfu-doc-mode)
+;;   :bind (:map corfu-map
+;;          ("M-n" . corfu-doc-scroll-down)
+;;          ("M-p" . corfu-doc-scroll-up)
+;;          ("M-d" . corfu-doc-toggle)))
 
 (use-package! orderless
-  :when (featurep! +orderless)
+  :when (modulep! +orderless)
   :init
   (setq completion-styles '(orderless)
         completion-category-defaults nil

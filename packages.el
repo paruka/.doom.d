@@ -21,9 +21,9 @@
 
 (package! anaconda-mode :disable t)
 
-(package! lsp-bridge :recipe
-  (:host github
-   :repo "manateelazycat/lsp-bridge"
-   :files ("*.el" "acm" "core" "langserver" "*.py")))
+;; (package! lsp-bridge :recipe
+;;   (:host github
+;;    :repo "manateelazycat/lsp-bridge"
+;;    :files ("*.el" "acm" "core" "langserver" "*.py")))
 
 (package! meson-mode)

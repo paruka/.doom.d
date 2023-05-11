@@ -22,7 +22,7 @@
        (vertico
         +orderless
         +icons)           ; the search engine of the future
-       (corfu + orderless)
+       ;;(corfu + orderless)
 
        :ui
        deft              ; notational velocity for Emacs
@@ -103,7 +103,7 @@
        (lookup             ; helps you navigate your code and documentation
          +dictionary
          +docsets)         ; ...or in Dash docsets locally
-       lsp
+       ;;lsp
        (magit
         +forge)               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -117,7 +117,7 @@
        upload              ; map local to remote projects via ssh/ftp
        paruka-leetcode
 ;;       paruka-webkit
-       paruka-eaf
+       ;;paruka-eaf
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -127,7 +127,8 @@
        ;;agda              ; types of types of types of types...
        (cc
         +lsp
-        +ccls)          ; C/C++/Obj-C madness
+        +tree-sitter)
+        ;;+ccls)          ; C/C++/Obj-C madness
         ;;+lsp)
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -209,6 +210,7 @@
        yaml                ; JSON, but readable
 
        paruka-org
+       lsp-bridge
 
        :email
        ;;(mu4e +gmail)       ; WIP
@@ -235,6 +237,7 @@
        ;;:private
        ;;paruka-org
        ;;paruka-cc
+
 
        ;; The default module sets reasonable defaults for Emacs. It also
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
