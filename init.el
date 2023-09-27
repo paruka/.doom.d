@@ -125,9 +125,9 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       (cc
-        +lsp
-        +tree-sitter)
+       ;;(cc
+        ;;+lsp
+        ;;+tree-sitter)
         ;;+ccls)          ; C/C++/Obj-C madness
         ;;+lsp)
        ;;clojure           ; java with a lisp
@@ -187,7 +187,8 @@
        plantuml            ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python             ; beautiful is better than ugly
-        +lsp-pyright
+        +pyenv
+        ;;+lsp-pyright
         ;;+conda
         ;;+pyright
         +cpython)

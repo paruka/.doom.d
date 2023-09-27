@@ -19,11 +19,21 @@
          :desc "LSP Jump prev error"
          "[" #'lsp-bridge-diagnostic-jump-prev))
 
-  (setq lsp-bridge-c-lsp-server "ccls")
+  (setq lsp-bridge-c-lsp-server "clangd")
   (setq flycheck-global-modes '())
   (setq lsp-bridge-enable-hover-diagnostic t)
   ;;(setq lsp-bridge-enable-auto-format-code t)
   ;;(setq lsp-bridge-signature-show-function 'lsp-bridge-signature-posframe)
   (require 'yasnippet)
   (yas-global-mode 1)
-  (global-lsp-bridge-mode))
+  (global-lsp-bridge-mode)
+  (unless (display-graphic-p)
+    (with-eval-after-load 'acm
+      (require 'acm-terminal))))
+
+(after! lsp-bridge
+  (setq lsp-bridge-user-multiserver-dir (concat doom-user-dir "modules/lang/lsp-bridge/multiservers/")
+        lsp-bridge-python-multi-lsp-server "paruka-pyright-ruff"))
+
+(after! cc-mode
+  (setq lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" ", " "\"")))

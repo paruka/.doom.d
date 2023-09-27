@@ -220,17 +220,18 @@
 ;; * Arch-specific
 (when IS-LINUX
   (setq insert-directory-program "ls"
-        conda-anaconda-home "/home/yangjianjia/anaconda3"
-        +python-conda-home "/home/yangjianjia/.conda"
+        ;;conda-anaconda-home "/home/yangjianjia/anaconda3"
+        ;;+python-conda-home "/home/yangjianjia/.conda"
         +modeline-height 48
         doom-big-font (font-spec :family "SF Mono" :size 24)
         doom-font (font-spec :family "SF mono" :size 16)
         doom-theme 'doom-city-lights ;;'doom-nord
         doom-unicode-font (font-spec :family "Sarasa Mono SC" :size 16)
         doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 16)
-        exec-path (append '("/home/yangjianjia/anaconda3/bin" "/home/yangjianjia/.local/bin") exec-path)
+        exec-path (append '("/home/yangjianjia/.local/bin") exec-path)
         ccls-initialization-options `(:clang ,(list :extraArgs ["-i/usr/include/c++/12.2.1" "-i/usr/include"]
                                                     :resourceDir (string-trim (shell-command-to-string "clang -print-resource-dir")))))
+  (setenv "PATH" (concat "/home/yangjianjia/.local/bin" path-separator (getenv "PATH")))
   (setq-default c-basic-offset 4)
   (setq-default tab-width 4)
   (define-coding-system-alias 'UTF-8 'utf-8)
@@ -394,4 +395,7 @@
   (setq org-agenda-files '("~/.doom.d/org/gtd/todo.org"
                            "~/.doom.d/org/gtd/done.org"
                            "~/.doom.d/org/gtd/notes.org")))
+
+
+
 (load! "+bindings")
