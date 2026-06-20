@@ -3,4 +3,9 @@
 *.log
 /tmp
 /org
+flycheck_*.el
+*~
+\#*\#
+.#*
+*.elc
 
