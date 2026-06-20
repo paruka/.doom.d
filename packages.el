@@ -11,19 +11,18 @@
 (package! deadgrep)
 (package! evil-lion)
 (package! anki-editor)
-(package! format-all)
 (package! protobuf-mode)
-(package! interleave)
-(package! rime)
+(when (featurep :system 'linux)
+  (package! rime)
+  (package! gif-screencast))
 (package! keycast)
-(package! gif-screencast)
-;;(package! company :disable t)
-
-(package! anaconda-mode :disable t)
-
-;; (package! lsp-bridge :recipe
-;;   (:host github
-;;    :repo "manateelazycat/lsp-bridge"
-;;    :files ("*.el" "acm" "core" "langserver" "*.py")))
 
 (package! meson-mode)
+
+(package! eldoc-box)
+
+(package! corfu-terminal)
+(package! lsp-proxy :recipe
+  (:host github
+   :repo "jadestrong/lsp-proxy"
+   :files ("*.el")))

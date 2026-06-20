@@ -1,4 +1,3 @@
-;;; lang/paruka-org/package.el -*- lexical-binding: t; -*-
-;;(package! org-roam-server)
+;;; lang/paruka-org/packages.el -*- lexical-binding: t; -*-
 (package! valign)
 
