@@ -19,6 +19,9 @@
 
 (package! meson-mode)
 
+(when IS-WINDOWS
+  (disable-packages! tree-sitter tree-sitter-langs))
+
 (package! eldoc-box)
 
 (package! corfu-terminal)

@@ -137,7 +137,7 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        upload              ; map local to remote projects via ssh/ftp
-       tree-sitter
+       (:if (not IS-WINDOWS) tree-sitter)
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
