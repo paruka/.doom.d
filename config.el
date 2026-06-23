@@ -301,6 +301,7 @@
 (after! cc-mode
   (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
   (map! :map c-mode-base-map
         :i [remap c-indent-line-or-region] #'completion-at-point))
 
@@ -324,8 +325,8 @@
 
 (use-package! lsp-proxy
   :hook ((lua-ts-mode lua-mode
-          c-mode c-ts-mode c++-mode c++-ts-mode
-          python-mode python-ts-mode) . lsp-proxy-mode)
+                      c-mode c-ts-mode c++-mode c++-ts-mode
+                      python-mode python-ts-mode) . lsp-proxy-mode)
   :config
   (setq lsp-proxy-server-path (expand-file-name "emacs-lsp-proxy" doom-data-dir)
         lsp-proxy-enable-bytecode nil
