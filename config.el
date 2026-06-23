@@ -298,9 +298,8 @@
   :mode "/meson\\.build\\'")
 
 ;; C/C++、Lua、Python 由 lsp-proxy 处理，不通过 eglot
-(add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(dolist (ext '("\\.cppm\\'" "\\.ipp\\'" "\\.inl\\'"))
+  (add-to-list 'auto-mode-alist (cons ext 'c++-mode)))
 
 (after! cc-mode
   (map! :map c-mode-base-map
