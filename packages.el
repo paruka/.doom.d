@@ -19,7 +19,7 @@
 
 (package! meson-mode)
 
-(when IS-WINDOWS
+(when (featurep :system 'windows)
   (disable-packages! tree-sitter tree-sitter-langs))
 
 (package! eldoc-box)

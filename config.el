@@ -13,13 +13,6 @@
   (electric-pair-mode -1))
 
 
-;; **** projectile
-(after! projectile
-  (when (and (featurep :system 'windows) (executable-find doom-fd-executable))
-    (setq projectile-generic-command
-          (format "%s . -0 -H -E .git --color=never --type file --type symlink --follow --path-separator=//"
-                  doom-fd-executable))))
-
 ;; **** avy
 (after! avy
   (setq avy-all-windows 'all-frames))
@@ -98,7 +91,7 @@
 ;; lsp-proxy 接管 C/C++、Lua、Python 的格式化，禁止 Doom format 模块通过 LSP 格式化
 (setq-hook! '(python-mode-hook python-ts-mode-hook
               c-mode-hook c++-mode-hook c-ts-mode-hook c++-ts-mode-hook
-              lua-mode-hook lua-ts-mode-hook)
+              lua-mode-hook lua-ts-mode-hook go-mode-hook go-ts-mode-hook)
   +format-with-lsp nil)
 
 ;; **** tools
@@ -202,14 +195,24 @@
   (add-to-list 'auto-coding-functions #'my/auto-detect-gb18030))
 
  ((featurep :system 'windows)
-  (setq doom-big-font (font-spec :family "Mononoki Nerd Font" :size 24)
-        doom-font (font-spec :family "Mononoki Nerd Font" :size 16)
-        doom-symbol-font (font-spec :family "Mononoki Nerd Font" :size 16)
-        doom-variable-pitch-font (font-spec :family "Source Code Pro")
-        exec-path (append '("C:/home/Softwares/msys64/mingw64/bin"
-                            "C:/home/Softwares/msys64/msys64/usr/local/bin"
-                            "C:/home/Softwares/msys64/usr/bin"
-                            "D:/Softwares/nodejs")
+  (prefer-coding-system 'utf-8)
+  (set-coding-system-priority 'utf-8 'gb18030 'gbk 'gb2312 'latin-1)
+  (after! projectile
+    (setq projectile-git-fd-args "-H -0 -E .git --color=never --type file --type symlink --follow --path-separator=//"))
+  (setq doom-big-font (font-spec :family "SF Mono" :size 24)
+        doom-font (font-spec :family "SF Mono" :size 16)
+        doom-symbol-font (font-spec :family "Sarasa Mono SC" :size 16)
+        doom-variable-pitch-font (font-spec :family "SF Compact Display" :size 16)
+        flycheck-checker-error-threshold 3000
+        exec-path (append '(;;"C:/home/Softwares/msys64/mingw64/bin"
+                            ;;"C:/home/Softwares/msys64/msys64/usr/local/bin"
+                            ;;"C:/home/Softwares/msys64/usr/bin"
+                            ;;"D:/Softwares/nodejs"
+                            ;;"C:/cygwin64/bin"
+                            ;;"C:/cygwin64/usr/bin"
+                            "C:/Users/yangjianjia/Documents/home/bin/lua-lsp/bin"
+                            "C:/Users/yangjianjia/Documents/home/bin/"
+                            )
                           (list (expand-file-name "~/AppData/Roaming/npm"))
                           exec-path))))
 
@@ -312,7 +315,7 @@
   ;; lsp-proxy 负责 C/C++、Lua、Python，阻止 eglot 在这些模式下启动
   (dolist (hook '(c-mode-hook c++-mode-hook c++-ts-mode-hook c-ts-mode-hook
                   lua-mode-hook lua-ts-mode-hook
-                  python-mode-hook python-ts-mode-hook))
+                  python-mode-hook python-ts-mode-hook go-mode-hook go-ts-mod-hook))
     (remove-hook hook #'+lsp-init-maybe-h)))
 
 (use-package! eldoc-box
@@ -324,7 +327,7 @@
         :desc "Close eldoc box frame"  "t x" #'eldoc-box-quit-frame))
 
 (use-package! lsp-proxy
-  :hook ((lua-ts-mode lua-mode
+  :hook ((lua-ts-mode lua-mode go-mode go-ts-mode
                       c-mode c-ts-mode c++-mode c++-ts-mode
                       python-mode python-ts-mode) . lsp-proxy-mode)
   :config
